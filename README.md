@@ -2,7 +2,7 @@
 
 This repository contains student files for the UIBK course "VU Advanced Statistics."
 
-See the [course web page](https://mtalluto.github.io) and the [Github repository](https://github.com/mtalluto/vu_advanced_statistics) for information on getting set up for the course.
+See the [course web page](https://mtalluto.github.io/vu_advanced_statistics) and the [Github repository](https://github.com/mtalluto/vu_advanced_statistics) for information on getting set up for the course.
 
 ## Cloning this repository in RStudio
 
