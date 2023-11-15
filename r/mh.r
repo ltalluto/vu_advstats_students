@@ -167,7 +167,7 @@ m_propose <- function(state, scale, target, data, j) {
 #' @param posterior A function returning the log unnormalized posterior density
 #' @param data The data used to compute the samples
 #' @param density The (minimum) probability density contained in the interval
-hpdi = function(samples, posterior, data, density = 0.9) {
+hdi = function(samples, posterior, data, density = 0.9) {
 
 	# compute the indices of all possible intervals
 	n = nrow(samples)
