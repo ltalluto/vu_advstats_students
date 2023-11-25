@@ -1,11 +1,16 @@
-#' Computes a multivariate hpdi interval
+#' Computes a multivariate highest posterior density interval
 #' 
 #' Assumes a unimodal posterior distribution
 #' @param samples A matrix of mcmc samples
-#' @param posterior A function returning the log unnormalized posterior density
-#' @param data The data used to compute the samples
+#' @param lp Optional, vector of log posterior density of each sample, see details
 #' @param density The (minimum) probability density contained in the interval
-hdi = function(samples, posterior, data, density = 0.9) {
+#' @details If a multivariate interval is desired, you must also pass the log probability of the model at
+#' each sample. If the posterior is univariate, then this parameter is optional.
+#' 
+#' @return The highest density interval with the desired coverage
+hdi = function(samples, lp, density = 0.9) {
+	if(!is.matrix(samples))
+		samples = matrix(samples, ncol = 1)
 	
 	# compute the indices of all possible intervals
 	n = nrow(samples)
@@ -13,17 +18,22 @@ hdi = function(samples, posterior, data, density = 0.9) {
 	lower = 1:(n - n_include)
 	upper = lower + n_include
 	
-	# sort the samples by their posterior density
-	dens = apply(samples, 1, posterior, data = data)
-	ind = order(dens)
-	dens = dens[ind]
-	samples = samples[ind, ]
+	# sort the samples by their posterior density if provided, or by the samples for univariate problems
+	if(!missing(lp)) {
+		ind = order(lp)
+		lp = lp[ind]
+		samples = samples[ind, ]
+	} else if(ncol(samples) == 1) {
+		ind = order(samples[,1])
+		samples = samples[ind,,drop = FALSE]
+	}
 	
 	# compute the width for each variable, then the area in the parameter dimension
-	area = mapply(function(l, u, samp) 
-		prod(apply(samp, 2, function(x) x[u[i]] - x[l[i]])), 
-		l = lower, u = upper, moreArgs = list(samp = samples))
+	f = function(l, u, samp) prod(apply(samp, 2, function(x) x[u] - x[l]))
+	area = mapply(f, l = lower, u = upper, MoreArgs = list(samp = samples))
 	
 	i = which.min(area)
-	cbind(samples[lower[i], ], samples[upper[i], ])
+	res = cbind(samples[lower[i], ], samples[upper[i], ])
+	colnames(res) = c("lower", "upper")
+	res
 }
