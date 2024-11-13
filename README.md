@@ -2,7 +2,7 @@
 
 This repository contains student files for the UIBK course "VU Advanced Statistics."
 
-See the [course web page](https://mtalluto.github.io/vu_advanced_statistics) and the [Github repository](https://github.com/mtalluto/vu_advanced_statistics) for information on getting set up for the course.
+See the [course web page](https://ltalluto.github.io/vu_advanced_statistics) and the [Github repository](https://github.com/ltalluto/vu_advanced_statistics) for information on getting set up for the course.
 
 ## Cloning this repository in RStudio
 
@@ -24,7 +24,7 @@ If there is no file path, quit RStudio and follow the instructions for your oper
 
 #### Mac & Linux
 
-If you have already followed the [course setup instructions](https://github.com/mtalluto/vu_advanced_statistics/#r-developer-tools) then you will have the R developer tools, and should already have git. Normally, RStudio will find this automatically. If not:
+If you have already followed the [course setup instructions](https://github.com/ltalluto/vu_advanced_statistics/#r-developer-tools) then you will have the R developer tools, and should already have git. Normally, RStudio will find this automatically. If not:
 
 1. Open a new Terminal window (Mac: run `Terminal.app` in the `/Applications/Utilities` folder.
 2. Type `which git` in the Terminal
@@ -34,7 +34,7 @@ If you have already followed the [course setup instructions](https://github.com/
 
 1. In RStudio, choose `File -> New Project`
 2. Select `Version Control` then `Git`
-3. For **Repository URL** enter `https://github.com/mtalluto/vu_advstats_students.git`
+3. For **Repository URL** enter `https://github.com/ltalluto/vu_advstats_students.git`
 4. **Project directory name** will be filled in by default
 5. For **Create project as a subdirectory of**, you can browse to a location on your computer where you want to keep the course files.
 
